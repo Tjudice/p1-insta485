@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>insta485</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <div class = "linksTop">
+            <a href = "/">Home</a>
+            <div class = "linksR">
+                <a href = "/explore/">Explore</a>
+                <a href = "/u/{{logname}}/">{{logname}}</a>
+            </div>
+        </div>
+        <div class = "following-container">
+            <h1>Following</h1>
+
+
+            <div class = "icon-container">
+
+                {% for follow in following %}
+                    <div class = "following-container">
+                            <img class = "post-profile-photo" src = "{{ follow.user_img_url }}" alt = "profile photo"/>
+                            <a href = "/u/{{ follow.username }}/">{{ follow.username }}</a>
+
+                            {% if follow.username != logname %}
+                                {% if follow.logname_follows_username %}
+                                    <h3>following</h3>
+                                {% else %}
+                                    <h3>not following</h3>
+                                {% endif %}
+                            {% endif%}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# insta485run
+#
+# Clean, build and start server
+#
+# Andrew DeOrio <awdeorio@umich.edu>
+
+
+# Stop on errors, print commands
+# See https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -Eeuo pipefail
+set -x
+
+# Clean
+rm -rf insta485/html
+
+# Build
+insta485generator insta485
+
+# Serve
+cd insta485/html
+python3 -m http.server 8000

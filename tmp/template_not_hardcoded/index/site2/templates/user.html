@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>insta485</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <div class = "linksTop">
+            <a href = "/">Home</a>
+            <div class = "linksR">
+                <a href = "/explore/">Explore</a>
+                <a href = "/u/{{logname}}/">{{logname}}</a>
+            </div>
+        </div>
+        <div class = "profile-container">
+            <h1 class = "profile-username">{{username}}</h1>
+            {% if logname != username %}
+                {% if logname_follows_username %}
+                    <h3 class = "relationship">following</h3>
+                {% else %}
+                    <h3 class = "relationship">not following</h3>
+                {% endif %}
+            {% endif %}
+            <div class = "stats-container">        
+                {% if total_posts == "1" %}
+                    <h2 class = "post-count">{{total_posts}} post</h2>
+                {% else %}
+                    <h2 class = "post-count">{{total_posts}} posts</h2>
+                {% endif %}
+                {% if followers == 1 %}
+                    <a href = "/u/{{username}}/followers/"><h2 class = "followers-count">{{followers}} follower</h2></a>
+                {% else %}
+                    <a href = "/u/{{username}}/followers/"><h2 class = "followers-count">{{followers}} followers</h2></a>
+                {% endif %}
+                <a href = "/u/{{username}}/following/"><h2 class = "followers-count">{{following}} following</h2></a>
+            </div>
+            <h2 class = "profile-name">{{fullname}}</h2>
+            <div class = "profile-photo-container">
+                {% for post in posts %}
+                    <div class = "profile-photo-row">
+                        <div class = "profile-photo-r1 photo">
+                            <a href = "/p/{{ post.postid }}/">
+                                <img class = "profile-page-photo" src = "{{ post.img_url }}" alt = "instagram photo"/>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

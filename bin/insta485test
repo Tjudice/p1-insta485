@@ -1,0 +1,11 @@
+#!/bin/bash
+set -Eeuo pipefail
+set -x
+pytest tests/
+pycodestyle insta485generator
+pydocstyle insta485generator
+pylint --disable=no-value-for-parameter setup.py insta485generator
+rm -rf insta485/html
+insta485generator insta485
+html5validator --ignore JAVA_TOOL_OPTIONS --root html
+html5validator --ignore JAVA_TOOL_OPTIONS --root insta485/html

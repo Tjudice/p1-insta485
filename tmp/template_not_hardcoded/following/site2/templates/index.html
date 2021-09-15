@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>insta485</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <div class = "linksTop">
+            <a href = "/">Home</a>
+            <div class = "linksR">
+                <a href = "/explore/">Explore</a>
+                <a href = "/u/{{ logname }}/">{{ logname }}</a>
+            </div>
+        </div>
+        <div class = "postContainer">
+            {% for item in posts %}
+                <div class = "post">
+                    <div class = "post-inline">
+                        <div class = "user-post-info">
+                            <a href = "/u/{{ item.owner }}/">
+                                <img class = "post-profile-photo" src = "{{ item.owner_img_url }}" alt = "profile photo"/>
+                                <p class = "post-username">{{ item.owner }}</p>
+                            </a>
+                        </div>             
+                        <a class = "timestamp" href = "/p/{{ item.postid }}/">{{ item.timestamp }}</a>
+                    </div>
+                    <img class = "post-image" src = "{{ item.img_url }}" alt = "instagram photo"/>
+                    <div class = "below-post">
+                        {% if item.likes == 1 %}
+                            <h1 class = "likes">{{ item.likes }} like</h1>
+                        {% else %}
+                            <h1 class = "likes">{{ item.likes }} likes</h1>
+                        {% endif %}
+                        <div class = "comments">
+                            {% for comment in item.comments %}
+                                <div class = "comment">
+                                    <a class = "comment-username" href = "/u/{{ comment.owner }}/">{{ comment.owner }}</a>
+                                    <h3 class = "comment-content">{{ comment.text }}</h3>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>

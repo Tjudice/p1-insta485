@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>insta485</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <div class = "linksTop">
+            <a href = "/">Home</a>
+            <div class = "linksR">
+                <a href = "/explore/">Explore</a>
+                <a href = "/u/{{logname}}/">{{logname}}</a>
+            </div>
+        </div>
+        
+        <div class = "postContainer">
+            <div class = "post">
+                <div class = "post-inline">
+                    <div class = "user-post-info">
+                        <a href = "/u/{{ owner }}/">
+                            <img class = "post-profile-photo" src = "{{ owner_img_url }}" alt = "profile photo"/>
+                            <p class = "post-username">{{ owner }}</p>
+                        </a>
+                    </div>             
+                    <a class = "timestamp" href = "/p/{{ postid }}/">{{ timestamp }}</a>
+                </div>
+                <img class = "post-image" src = "{{ img_url }}" alt = "instagram photo"/>
+                <div class = "below-post">
+                    {% if likes == 1 %}
+                        <h1 class = "likes">{{ likes }} like</h1>
+                    {% else %}
+                        <h1 class = "likes">{{ likes }} likes</h1>
+                    {% endif %}
+                    <div class = "comments">
+                        {% for comment in comments %}
+                            <div class = "comment">
+                                <a class = "comment-username" href = "/u/{{ comment.owner }}/">{{ comment.owner }}</a>
+                                <h3 class = "comment-content">{{ comment.text }}</h3>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
